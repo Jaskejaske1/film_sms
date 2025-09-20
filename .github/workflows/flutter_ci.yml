@@ -67,7 +67,7 @@ jobs:
         run: flutter gen-l10n
 
       - name: Build Web Release
-        run: flutter build web --release --source-maps --base-href=/film-sms/ --no-wasm-dry-run
+        run: flutter build web --release --source-maps --base-href=/film-sms/ --web-renderer html
 
       - name: Include .htaccess in build
         run: |
@@ -106,6 +106,12 @@ jobs:
           # Quick log preview
           echo "First 40 checksum lines:" && head -n 40 "${VERIFY_DIR}/checksums.txt" || true
           echo "Preview .htaccess:" && sed -n '1,80p' build/web/.htaccess || true
+          if [ -d build/web/canvaskit ]; then
+            echo "NOTE: canvaskit directory present. If using --web-renderer html, it should be absent in subsequent builds."
+            ls -la build/web/canvaskit || true
+          else
+            echo "HTML renderer confirmed: no canvaskit directory."
+          fi
 
       - name: Upload Web Artifact
         uses: actions/upload-artifact@v4

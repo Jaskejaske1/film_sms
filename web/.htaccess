@@ -6,6 +6,11 @@
   AddType application/json .json
 </IfModule>
 
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  # Tip: cache-control intentionally omitted as requested
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   # Adjust this if you move the app elsewhere
