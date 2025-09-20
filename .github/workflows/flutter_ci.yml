@@ -69,6 +69,44 @@ jobs:
       - name: Build Web Release
         run: flutter build web --release --source-maps --base-href=/film-sms/ --no-wasm-dry-run
 
+      - name: Include .htaccess in build
+        run: |
+          if [ -f web/.htaccess ]; then cp web/.htaccess build/web/.htaccess; fi
+          ls -la build/web
+
+      - name: Verify web build and generate checksums
+        run: |
+          set -euo pipefail
+          VERIFY_DIR="$(mktemp -d)"
+          echo "Using verification directory: ${VERIFY_DIR}"
+          # Verify critical files exist
+          test -f build/web/index.html
+          test -f build/web/.htaccess
+          # Verify base href is correct for subfolder deploy
+          if grep -q '<base href="/film-sms/' build/web/index.html; then
+            echo "Base href OK"
+          else
+            echo "ERROR: Missing or incorrect base href in index.html" >&2
+            grep -n "<base href" build/web/index.html || true
+            exit 1
+          fi
+          # Log build info (do not persist in artifact)
+          echo "commit=${GITHUB_SHA}"
+          echo "run_id=${GITHUB_RUN_ID}"
+          echo "built_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          echo "base_href=/film-sms/"
+          # Generate manifest of files (relative paths) to temp dir
+          (cd build/web && find . -type f -printf '%P\n' | LC_ALL=C sort) > "${VERIFY_DIR}/manifest.txt"
+          # Generate SHA256 checksums for all files to temp dir
+          : > "${VERIFY_DIR}/checksums.txt"
+          while IFS= read -r relpath; do
+            [ -n "$relpath" ] || continue
+            sha256sum "build/web/$relpath" >> "${VERIFY_DIR}/checksums.txt"
+          done < "${VERIFY_DIR}/manifest.txt"
+          # Quick log preview
+          echo "First 40 checksum lines:" && head -n 40 "${VERIFY_DIR}/checksums.txt" || true
+          echo "Preview .htaccess:" && sed -n '1,80p' build/web/.htaccess || true
+
       - name: Upload Web Artifact
         uses: actions/upload-artifact@v4
         with:
