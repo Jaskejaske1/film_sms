@@ -71,10 +71,21 @@ jobs:
 
       - name: Include .htaccess in build
         run: |
-          if [ -f web/.htaccess ]; then cp web/.htaccess build/web/.htaccess; fi
+          set -euo pipefail
+          if [ ! -f web/.htaccess ]; then
+            echo "ERROR: web/.htaccess not found" >&2
+            ls -la web || true
+            exit 1
+          fi
+          mkdir -p build/web
+          cp -v web/.htaccess build/web/.htaccess
+          echo "Listing build/web (showing .htaccess):"
+          ls -la build/web | sed -n '1,200p'
 
       - name: Upload Web Artifact
         uses: actions/upload-artifact@v4
         with:
           name: web-release
-          path: build/web
+          path: |
+            build/web
+            build/web/.htaccess
