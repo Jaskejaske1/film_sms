@@ -1,0 +1,21 @@
+# Flutter Web SPA config for Apache under subfolder /film-sms/
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType application/json .json
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Adjust this if you move the app elsewhere
+  RewriteBase /film-sms/
+
+  # Don’t rewrite existing files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else goes to index.html (Flutter handles routing/assets)
+  RewriteRule ^ index.html [L]
+</IfModule>
