@@ -1,0 +1,87 @@
+{
+  "@@locale": "nl",
+  "appTitle": "Berichten",
+  "@appTitle": { "description": "App title shown in the app bar and system." },
+  "conversations": "Gesprekken",
+  "@conversations": { "description": "Label for conversations list." },
+  "newMessage": "Nieuw bericht",
+  "@newMessage": { "description": "Action to start a new message." },
+  "deleteConversation": "Gesprek verwijderen",
+  "@deleteConversation": { "description": "Action to delete a conversation." },
+  "deLijnTemplate": "De Lijn Bus Ticket",
+  "@deLijnTemplate": { "description": "Name of the De Lijn template." },
+  "price": "Prijs",
+  "@price": { "description": "Label for price input." },
+  "euro": "euro",
+  "@euro": { "description": "Currency label euro." },
+  "inject": "Invoegen",
+  "@inject": { "description": "Generic action to inject/insert." },
+
+  "loading": "Laden...",
+  "@loading": { "description": "Generic loading text." },
+  "error": "Fout",
+  "@error": { "description": "Generic error label." },
+  "errorWithMessage": "Fout: {message}",
+  "@errorWithMessage": {
+    "placeholders": {
+    "message": {
+  "type": "String"
+    }
+    }
+  },
+  "unknownContact": "Onbekend",
+  "@unknownContact": { "description": "Fallback name when contact unknown." },
+
+  "menuInjectDeLijn": "Inject De Lijn",
+  "@menuInjectDeLijn": { "description": "Menu item: inject De Lijn message." },
+  "menuInjectTemplate": "Inject Template…",
+  "@menuInjectTemplate": { "description": "Menu item: inject from template." },
+  "menuWipeData": "Data wissen",
+  "@menuWipeData": { "description": "Menu item: wipe local data." },
+  "dataWiped": "Data gewist en opnieuw geconfigureerd.",
+  "@dataWiped": { "description": "Snackbar text shown after wiping data." },
+  "dataWipedMobile": "Data gewist — herstart de app voor een propere sessie.",
+  "@dataWipedMobile": { "description": "Snackbar text after wipe on mobile suggesting to restart the app." },
+  "menuHardResetExit": "Harde reset + afsluiten",
+  "@menuHardResetExit": { "description": "Desktop-only menu item to hard reset data and exit the app." },
+
+  "fillInData": "Vul gegevens in",
+  "@fillInData": { "description": "Dialog title requesting user input for template variables." },
+  "cancel": "Annuleren",
+  "@cancel": { "description": "Generic cancel button text." },
+  "ok": "OK",
+  "@ok": { "description": "Generic OK button text." },
+  "required": "Verplicht",
+  "@required": { "description": "Validation message for required fields." },
+  "typeMessageHint": "Typ een bericht…",
+  "@typeMessageHint": { "description": "Hint text in the message composer input field." },
+
+  "templateInjectionHint": "Template-injectie wordt via long-press afgehandeld.",
+  "@templateInjectionHint": { "description": "Info text explaining that template injection is accessible via long-press on a conversation." },
+
+  "templateInsertedWithPreview": "Template ingevoegd: {preview}...",
+  "@templateInsertedWithPreview": {
+  "placeholders": { "preview": { "type": "String" } }
+  },
+  "deLijnInsertedWithPreview": "De Lijn ingevoegd: {preview}...",
+  "@deLijnInsertedWithPreview": {
+  "placeholders": { "preview": { "type": "String" } }
+  },
+  "insertErrorWithMessage": "Fout bij invoegen: {message}",
+  "@insertErrorWithMessage": {
+  "placeholders": { "message": { "type": "String" } }
+  }
+  ,
+  "menuSettings": "Instellingen",
+  "@menuSettings": { "description": "App bar menu item: open settings." },
+  "settingsTitle": "Instellingen",
+  "@settingsTitle": { "description": "Settings page title." },
+  "settingsLanguage": "Taal",
+  "@settingsLanguage": { "description": "Section label for language setting." },
+  "languageSystemDefault": "Systeemstandaard",
+  "@languageSystemDefault": { "description": "Use system locale." },
+  "languageEnglish": "Engels",
+  "@languageEnglish": { "description": "English language option." },
+  "languageDutch": "Nederlands",
+  "@languageDutch": { "description": "Dutch language option." }
+}

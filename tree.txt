@@ -1,0 +1,57 @@
+lib/
+├── main.dart
+├── core/
+│   ├── constants/
+│   │   ├── app_constants.dart
+│   │   └── belgian_constants.dart
+│   ├── themes/
+│   │   ├── app_theme.dart
+│   │   └── material_you_theme.dart
+│   ├── utils/
+│   │   ├── date_formatter.dart
+│   │   ├── code_generator.dart
+│   │   └── belgian_formatter.dart
+│   └── templates/
+│       ├── message_template.dart
+│       └── template_engine.dart
+├── data/
+│   ├── models/
+│   │   ├── contact.dart
+│   │   ├── message.dart
+│   │   ├── conversation.dart
+│   │   └── message_template.dart
+│   ├── repositories/
+│   │   ├── conversation_repository.dart
+│   │   ├── contact_repository.dart
+│   │   └── template_repository.dart
+│   ├── datasources/
+│   │   ├── local_storage.dart
+│   │   └── hive_storage.dart
+│   └── mock_data/
+│       ├── belgian_conversations.dart
+│       ├── belgian_contacts.dart
+│       └── de_lijn_template.dart
+├── domain/
+│   ├── entities/
+│   │   ├── contact_entity.dart
+│   │   ├── message_entity.dart
+│   │   └── conversation_entity.dart
+│   └── usecases/
+│       ├── inject_template_message.dart
+│       ├── manage_conversations.dart
+│       └── generate_de_lijn_sms.dart
+├── presentation/
+│   ├── providers/
+│   │   ├── conversations_provider.dart
+│   │   ├── contacts_provider.dart
+│   │   ├── theme_provider.dart
+│   │   └── admin_provider.dart
+│   ├── pages/
+│   │   ├── conversation_list_page.dart
+│   │   ├── conversation_detail_page.dart
+│   │   └── template_injection_page.dart
+│   └── widgets/
+│       ├── conversation_tile.dart
+│       ├── message_bubble.dart
+│       ├── template_selector.dart
+│       └── admin_controls.dart

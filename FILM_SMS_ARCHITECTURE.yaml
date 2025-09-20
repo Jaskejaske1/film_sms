@@ -1,0 +1,97 @@
+# FilmSMS - Professional Film Production SMS Simulator
+# Architecture Specification - LOCKED
+# Date: 2025-09-18
+# Developer: Jaskejaske1
+
+PROJECT_INFO:
+  name: "FilmSMS"
+  purpose: "Professional fake SMS app for film production"
+  target_industry: "Film & Television Production"
+  current_client: "Belgian film production"
+  future_vision: "Scalable platform for global film industry"
+
+CORE_ARCHITECTURE:
+  framework: "Flutter"
+  state_management: "Riverpod (simple approach)"
+  storage: "Hive (local persistence)"
+  design_system: "Material You + Custom theming"
+  localization: "flutter_localizations + gen-l10n (nl_BE)"
+  testing: "Flutter widget test sanity checks"
+
+LOCALIZATION_SETTINGS:
+  language: "Dutch (nl_BE)"
+  phone_format: "+32 format"
+  date_format: "DD/MM/YYYY"
+  time_format: "24-hour (07u56 style)"
+  currency_format: "Euro (2,50 not 2.50)"
+  implementation_notes:
+    - "AppLocalizations wired via onGenerateTitle, delegates, supportedLocales"
+    - "All visible strings localized (list/detail/admin controls/dialogs)"
+
+DYNAMIC_MESSAGE_SYSTEM:
+  core_concept: "MessageTemplate with Variables"
+  expansion_method: "Template duplication & modification"
+  admin_access: "Long-press contact → Template selection"
+  future_proof: "Unlimited templates per contact"
+  implementation_notes:
+    - "TemplateEngine supports variable types: userInput, static, timeCalculator, dateFormatter, codeGenerator, priceFormatter"
+    - "Bottom sheet template selector with variable prompts"
+
+CURRENT_MOVIE_REQUIREMENTS:
+  contact: "+32488414"
+  company: "De Lijn"
+  message_format: "{{prefix_code}} Geldig op alle voertuigen van {{company}} tot {{expiry_time}} op {{current_date}}. Prijs: {{price}} euro {{validation_code}} {{footer}}"
+
+  variables:
+    prefix_code: "XX*XX pattern (letters/numbers)"
+    company: "De Lijn (fixed)"
+    expiry_time: "Current time +1 hour (07u56 format)"
+    current_date: "Today (DD/MM/YYYY)"
+    price: "Customizable (default: 2,50)"
+    validation_code: "Random 23-char alphanumeric"
+    footer: "**Onze App = Extra gemak!**"
+  implementation_status:
+    - "Use case GenerateDeLijnSMS implemented, injects into conversation"
+    - "Template exists by default for contact 'De Lijn'"
+    - "Price normalized to Belgian format when entered"
+
+MOCK_CONVERSATIONS:
+  total_count: 25
+  categories:
+    family: 8
+    work: 5
+    friends: 4
+    services: 4
+    business: 2
+    government: 2
+
+  realism_requirements:
+    - Belgian cultural context
+    - Realistic timing spreads
+    - Natural conversation flows
+    - Dutch language
+    - Regional references
+  implementation_status:
+    - "Seeded with 25 conversations matching category counts"
+    - "Timestamps and content tuned for Belgian context"
+
+EXPANSION_STRATEGY:
+  phase_1: "Current movie (De Lijn template)"
+  phase_2: "Template editor + multi-project support"
+  phase_3: "Regional adapters + commercial licensing"
+  scalability: "Contact → Multiple Templates → Industry Platform"
+  admin_workflow:
+    current: "Long-press contact → Template selection"
+    optional_tools: "Admin overflow retained for convenience (non-blocking)"
+
+TECHNICAL_DECISIONS:
+  simple_but_expandable: true
+  future_proof_architecture: true
+  clean_code_principles: true
+  easy_maintenance: true
+  code_quality:
+    - "Analyzer clean"
+    - "Deprecated API usage avoided (Material 3 colors)"
+  i18n:
+    - "ARB metadata complete with placeholders"
+    - "New key templateInjectionHint documents long-press workflow"

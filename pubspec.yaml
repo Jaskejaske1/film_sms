@@ -1,0 +1,45 @@
+name: film_sms
+description: Professional fake SMS app for film production
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: ^2.4.9
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Utilities
+  intl: ^0.20.2 # Date/time formatting
+  uuid: ^4.0.0 # ID generation
+  path_provider: ^2.1.4
+
+  # UI - REMOVED material_color_utilities (Flutter provides it automatically)
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Code Generation
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.7
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
