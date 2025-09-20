@@ -1,11 +1,11 @@
 {
-    "name": "film_sms",
-    "short_name": "film_sms",
+    "name": "Film SMS",
+    "short_name": "FilmSMS",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#2D77E7",
+    "theme_color": "#2D77E7",
+    "description": "Professional fake SMS app for film production.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

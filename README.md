@@ -106,6 +106,13 @@ Apache `.htaccess` expectations:
 - Security: `X-Content-Type-Options: nosniff`.
 - SPA: rewrite everything to `index.html`, except existing files/dirs.
 
+### PWA (installable)
+
+- Icons are in `web/icons/` (192/512 and maskable variants). Replace with your finalized branding.
+- Manifest `web/manifest.json` sets name, short_name, theme/background colors.
+- `web/index.html` includes `<meta name="theme-color">` and Apple touch icon.
+- To refresh install banners and icons, hard-refresh or bump `version.json` by rebuilding.
+
 ## Contributing
 
 - Keep changes minimal and focused
