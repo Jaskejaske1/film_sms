@@ -49,10 +49,11 @@ class _FakeStorage extends HiveStorage {
   @override
   Future<void> saveTemplate(MessageTemplate template) async {
     final i = templates.indexWhere((t) => t.id == template.id);
-    if (i >= 0)
+    if (i >= 0) {
       templates[i] = template;
-    else
+    } else {
       templates.add(template);
+    }
   }
 }
 

@@ -37,8 +37,9 @@ class SettingsPage extends ConsumerWidget {
   }
 
   String _languageLabel(AppLocalizations? l10n, Locale? locale) {
-    if (locale == null)
+    if (locale == null) {
       return l10n?.languageSystemDefault ?? 'Systeemstandaard';
+    }
     switch (locale.languageCode) {
       case 'en':
         return l10n?.languageEnglish ?? 'Engels';
@@ -62,23 +63,22 @@ class _LanguageDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          RadioListTile<String>(
-            value: '',
-            groupValue: current ?? '',
-            onChanged: (v) => Navigator.of(context).pop(v),
+          ListTile(
             title: Text(l10n?.languageSystemDefault ?? 'Systeemstandaard'),
+            trailing: (current == null || current == '')
+                ? const Icon(Icons.check)
+                : null,
+            onTap: () => Navigator.of(context).pop(''),
           ),
-          RadioListTile<String>(
-            value: 'en',
-            groupValue: current ?? '',
-            onChanged: (v) => Navigator.of(context).pop(v),
+          ListTile(
             title: Text(l10n?.languageEnglish ?? 'Engels'),
+            trailing: current == 'en' ? const Icon(Icons.check) : null,
+            onTap: () => Navigator.of(context).pop('en'),
           ),
-          RadioListTile<String>(
-            value: 'nl',
-            groupValue: current ?? '',
-            onChanged: (v) => Navigator.of(context).pop(v),
+          ListTile(
             title: Text(l10n?.languageDutch ?? 'Nederlands'),
+            trailing: current == 'nl' ? const Icon(Icons.check) : null,
+            onTap: () => Navigator.of(context).pop('nl'),
           ),
         ],
       ),
