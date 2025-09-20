@@ -4,6 +4,7 @@
   AddType application/javascript .js
   AddType text/css .css
   AddType application/json .json
+  AddType application/wasm .wasm
 </IfModule>
 
 <IfModule mod_headers.c>

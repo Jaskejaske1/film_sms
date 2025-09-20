@@ -81,6 +81,31 @@ Note: Do not manually edit the generated `app_localizations*.dart` files.
   - Template engine + De Lijn use case
   - Widget flows: settings language switch, template injection (menu + sheet)
 
+## Web
+
+Build commands:
+
+```powershell
+# Local (with source maps for debugging)
+flutter build web --release --source-maps --base-href=/film-sms/ --no-wasm-dry-run
+
+# CI (lean, no source maps)
+flutter build web --release --base-href=/film-sms/ --no-wasm-dry-run
+```
+
+Deploy notes:
+
+- Upload the contents of `build/web` to your `/film-sms/` subfolder.
+- Include `web/.htaccess` (copied into `build/web` by CI) for SPA routing and MIME types.
+- If switching hosts or folders, ensure `RewriteBase` in `web/.htaccess` matches your path.
+- Clear any stale files on the server before uploading to avoid old assets lingering.
+
+Apache `.htaccess` expectations:
+
+- MIME types: `.js`, `.css`, `.json`, and `.wasm`.
+- Security: `X-Content-Type-Options: nosniff`.
+- SPA: rewrite everything to `index.html`, except existing files/dirs.
+
 ## Contributing
 
 - Keep changes minimal and focused
