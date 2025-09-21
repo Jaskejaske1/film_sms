@@ -216,9 +216,9 @@ jobs:
         run: |
           set -euo pipefail
           test -n "${ANDROID_KEYSTORE_BASE64:-}" || { echo "ANDROID_KEYSTORE_BASE64 is not set"; exit 1; }
-          mkdir -p android
-          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/upload-keystore.jks
-          ls -lh android/upload-keystore.jks
+          mkdir -p android/app
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+          ls -lh android/app/upload-keystore.jks
 
       - name: Build signed Android APK
         env:
