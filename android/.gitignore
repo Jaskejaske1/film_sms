@@ -1,9 +1,10 @@
-gradle-wrapper.jar
 /.gradle
 /captures/
-/gradlew
-/gradlew.bat
 /local.properties
+#! Keep Gradle wrapper committed for CI and reproducible builds
+!gradle/wrapper/gradle-wrapper.jar
+!/gradlew
+!/gradlew.bat
 GeneratedPluginRegistrant.java
 .cxx/
 

@@ -22,7 +22,15 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-.vscode/            # Ignore unless you want to share launch/tasks.json
+
+# Ignore personal configs
+.vscode/settings.json
+.vscode/extensions.json
+
+# Keep these for reproducibility
+!.vscode/launch.json
+!.vscode/tasks.json
+
 
 # =========================
 # Flutter/Dart
@@ -48,17 +56,19 @@ windows/flutter/generated_plugins.cmake
 # =========================
 # Android
 # =========================
-**/android/**/gradle-wrapper.jar
 **/android/.gradle/
 **/android/captures/
-**/android/gradlew
-**/android/gradlew.bat
-**/android/local.properties    # contains local SDK paths
-**/android/key.properties      # keep signing keys out of Git
+## Keep Gradle wrapper committed for reliable builds
+# (do not ignore gradle-wrapper.jar, gradlew, gradlew.bat)
+# contains local SDK paths
+**/android/local.properties
+# keep signing keys out of Git
+**/android/key.properties
 **/android/.idea/
 **/android/app/debug
 **/android/app/profile
 **/android/app/release
+.gradle/
 
 # =========================
 # iOS/macOS
@@ -105,3 +115,13 @@ windows/flutter/generated_plugins.cmake
 # =========================
 app.*.symbols
 app.*.map.json
+
+# ignore Flutter ephemeral plugin symlink folders
+**/flutter/ephemeral/
+
+# =========================
+# Environment Variables
+# =========================
+
+.env
+.env.* 
