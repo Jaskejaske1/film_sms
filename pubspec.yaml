@@ -42,6 +42,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.0
+  rename: ^3.0.0
 
 flutter:
   uses-material-design: true
@@ -76,3 +77,9 @@ flutter_native_splash:
   android_12:
     color: "#2D77E7"
     image: "web/icons/Icon-192.png"
+
+# Centralized app metadata (reference for tooling/scripts)
+app_metadata:
+  application_name: "Film SMS"
+  android_application_id: "be.jaske.filmsms"
+  ios_bundle_identifier: "be.jaske.filmsms"
