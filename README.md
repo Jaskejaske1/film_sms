@@ -124,6 +124,23 @@ Apache `.htaccess` expectations:
 - Security: `X-Content-Type-Options: nosniff`.
 - SPA: rewrite everything to `index.html`, except existing files/dirs.
 
+## Android Signing & CI
+
+- Signing is CI-only using GitHub Secrets; no signing files are committed.
+- Required secrets: `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`.
+- One-time setup:
+  - Generate keystore (PowerShell):
+    - `& "$env:JAVA_HOME\bin\keytool.exe" -genkeypair -v -keystore upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload`
+  - Base64 encode and add to secrets:
+    - `[Convert]::ToBase64String([IO.File]::ReadAllBytes('upload-keystore.jks')) | Set-Content -NoNewline upload-keystore.jks.base64`
+    - Copy file contents into `ANDROID_KEYSTORE_BASE64`.
+- CI release job reconstructs the keystore and builds a signed `.aab` when a tag is pushed.
+
+## Auto‑tagging
+
+- On push to `main`/`master`, the workflow reads `version:` from `pubspec.yaml` and creates a `v<version>` tag if it doesn’t exist.
+- Tag pushes (or the auto‑created tag) trigger the Android signed release job and publish the `.aab` as an artifact.
+
 ### PWA (installable)
 
 - Icons are in `web/icons/` (192/512 and maskable variants). Replace with your finalized branding.
