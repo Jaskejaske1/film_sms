@@ -30,6 +30,17 @@
 			]
 		},
 		{
+			"label": "Tools: Apply app metadata (rename)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"flutter pub get; dart run tool/apply_app_metadata.dart"
+			],
+			"group": "build"
+		},
+		{
 			"label": "Flutter: Build Windows (release)",
 			"type": "shell",
 			"command": "flutter",
