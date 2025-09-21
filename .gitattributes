@@ -1,0 +1,52 @@
+# ==================================
+# Default: normalize text files to LF
+# ==================================
+* text=auto eol=lf
+
+# Dart / Flutter sources
+*.dart   text diff
+*.yaml   text diff
+*.yml    text diff
+*.json   text diff
+*.md     text diff
+*.gradle text diff
+*.xml    text diff
+*.plist  text diff
+
+# Windows batch scripts → keep CRLF
+*.bat    text eol=crlf
+
+# Unix shell scripts → force LF
+*.sh     text eol=lf
+
+# PowerShell scripts (Windows) → CRLF
+*.ps1    text eol=crlf
+
+# Lock files → prevent conflicts by merging line-wise
+pubspec.lock     merge=union
+package-lock.json merge=union
+yarn.lock        merge=union
+
+# Images / assets → always binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.ttf   binary
+*.otf   binary
+*.woff  binary
+*.woff2 binary
+
+# Flutter generated binaries
+*.a     binary
+*.so    binary
+*.dylib binary
+*.dll   binary
+*.exe   binary
+
+# ==================================
+# GitHub linguist (optional, for repo stats)
+# ==================================
+*.dart linguist-detectable=true
