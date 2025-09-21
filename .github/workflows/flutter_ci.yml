@@ -222,7 +222,7 @@ jobs:
 
       - name: Build signed Android APK
         env:
-          SIGNING_STORE_FILE: android/app/upload-keystore.jks
+          SIGNING_STORE_FILE: upload-keystore.jks
           SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
@@ -237,7 +237,7 @@ jobs:
 
       - name: Build signed Android App Bundle
         env:
-          SIGNING_STORE_FILE: android/app/upload-keystore.jks
+          SIGNING_STORE_FILE: upload-keystore.jks
           SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
