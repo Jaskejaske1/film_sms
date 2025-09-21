@@ -12,6 +12,19 @@ Professional fake SMS app for film production.
   - In‑app language selection (System / English / Dutch)
   - ARB‑driven localization with `flutter gen-l10n`
   - Unit + widget tests for key flows
+  - **Contact/phone/message linking:**
+    - Each conversation is tied to a contact by unique ID.
+    - Contacts are seeded with realistic Belgian names and types.
+    - Messages are linked to conversations and contacts; unread counts are tracked and cleared on open.
+  - **Phone number display rules:**
+    - If a contact has a name, the conversation list shows the name as the title and the phone number (formatted) as a subtitle.
+    - If a contact has no name, the list title shows the formatted phone number; subtitle is omitted to avoid duplication.
+    - In the detail view, the AppBar title is the name (if present) or the formatted phone number. The subtitle (below the title) shows the phone number only when a name exists.
+  - **Deterministic phone generation:**
+    - On reseed, blank phone numbers are filled deterministically using the contact name as a seed, ensuring stable, realistic Belgian mobile numbers.
+    - De Lijn always has a fixed number (`+32 488 414`), with no name.
+  - **Testing:**
+    - Widget tests cover list and detail phone display logic, De Lijn fallback, deterministic phone generation, and message linking.
 
 ## Architecture
 
@@ -23,24 +36,29 @@ Professional fake SMS app for film production.
 
 State is managed via Riverpod. `FilmSMSApp` is a `ConsumerWidget` so `MaterialApp.locale` updates immediately when the language setting changes.
 
-## Getting Started
+## Developer Quickstart
 
-```powershell
-# Fetch packages
-flutter pub get
+```sh
+# Analyze code
+flutter analyze
 
-# Generate Hive/other code if needed
-flutter pub run build_runner build --delete-conflicting-outputs
-
-# Generate localizations from ARB
-flutter gen-l10n
-
-# Run the app
-flutter run
-
-# Run tests
+# Run all tests
 flutter test
+
+# Build web (release, SPA)
+flutter build web --release --source-maps --base-href=/film-sms/ --no-wasm-dry-run
 ```
+
+## Data Model Overview
+
+- `Contact`: id, name, phoneNumber, type, isDynamic
+- `Conversation`: id, contactId, messages, lastMessageTime, unreadCount
+- `Message`: body, timestamp, isIncoming, contactId
+
+## Reseed Logic
+
+- Use the menu to "Wipe data" or "Hard reset"; reseed will blank all phone numbers except De Lijn, then fill blanks deterministically.
+- De Lijn always appears with no name and its fixed number.
 
 ## Localization (ARB)
 

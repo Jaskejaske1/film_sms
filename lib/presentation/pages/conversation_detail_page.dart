@@ -4,6 +4,7 @@ import '../../presentation/providers/conversations_provider.dart';
 import '../../presentation/providers/contacts_provider.dart';
 import '../widgets/message_bubble.dart';
 import '../../l10n/app_localizations.dart';
+import '../../core/utils/belgian_formatter.dart';
 
 class ConversationDetailPage extends ConsumerStatefulWidget {
   final String contactId;
@@ -48,9 +49,32 @@ class _ConversationDetailPageState
     );
 
     final l10n = AppLocalizations.of(context);
+    final name = (contact?.name ?? '').trim();
+    final rawPhone = contact?.phoneNumber;
+    final phone = rawPhone?.trim();
+    final titleText = name.isNotEmpty
+        ? name
+        : (phone != null && phone.isNotEmpty
+              ? BelgianFormatter.formatBelgianPhone(phone)
+              : (l10n?.conversations ?? 'Gesprek'));
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(contact?.name ?? (l10n?.conversations ?? 'Gesprek')),
+        title: Text(titleText),
+        bottom: (name.isNotEmpty && phone != null && phone.trim().isNotEmpty)
+            ? PreferredSize(
+                preferredSize: const Size.fromHeight(20),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text(
+                    BelgianFormatter.formatBelgianPhone(phone.trim()),
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: Theme.of(context).hintColor,
+                    ),
+                  ),
+                ),
+              )
+            : null,
       ),
       body: Column(
         children: [

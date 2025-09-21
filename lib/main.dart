@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'data/datasources/hive_storage.dart';
 import 'presentation/pages/conversation_list_page.dart';
@@ -9,6 +10,16 @@ import 'presentation/pages/settings_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Set desktop window title without editing platform files
+  try {
+    await windowManager.ensureInitialized();
+    const WindowOptions windowOptions = WindowOptions(title: 'Film SMS');
+    windowManager.waitUntilReadyToShow(windowOptions, () async {
+      await windowManager.setTitle('Film SMS');
+    });
+  } catch (_) {
+    // window_manager is desktop-only; ignore on other platforms
+  }
 
   // Initialize Hive storage
   final hiveStorage = HiveStorage();

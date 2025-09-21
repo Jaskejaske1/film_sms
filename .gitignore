@@ -1,9 +1,12 @@
-# Miscellaneous
+# =========================
+# General
+# =========================
 *.class
 *.log
 *.pyc
 *.swp
 .DS_Store
+Thumbs.db
 .atom/
 .build/
 .buildlog/
@@ -12,20 +15,18 @@
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# =========================
+# IDEs
+# =========================
 *.iml
 *.ipr
 *.iws
 .idea/
+.vscode/            # Ignore unless you want to share launch/tasks.json
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# =========================
+# Flutter/Dart
+# =========================
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -34,17 +35,73 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+**/doc/api/
+**/ios/Flutter/.last_build_id
 
-# Symbolication related
+# Generated plugin registrants
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugins.cmake
+macos/Flutter/GeneratedPluginRegistrant.swift
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugins.cmake
+
+# =========================
+# Android
+# =========================
+**/android/**/gradle-wrapper.jar
+**/android/.gradle/
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties    # contains local SDK paths
+**/android/key.properties      # keep signing keys out of Git
+**/android/.idea/
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+
+# =========================
+# iOS/macOS
+# =========================
+**/ios/.generated/
+**/ios/Flutter/.symlinks/
+**/ios/Pods/
+**/ios/.idea/
+**/ios/.vscode/
+**/ios/Runner.xcworkspace/
+**/ios/Runner.xcuserstate
+**/ios/Runner.xcuserdata/
+**/ios/profile
+**/ios/debug
+**/ios/Release
+*.xcuserstate
+*.xcscmblueprint
+
+**/macos/Flutter/ephemeral/
+**/macos/Pods/
+**/macos/Runner.xcworkspace/
+**/macos/Runner.xcuserstate
+**/macos/Runner.xcuserdata/
+
+# =========================
+# Windows/Linux
+# =========================
+**/windows/Flutter/ephemeral/
+**/windows/.vs/
+**/windows/x64/
+**/windows/x86/
+**/windows/arm64/
+**/windows/Debug/
+**/windows/Release/
+
+**/linux/Flutter/ephemeral/
+**/linux/.vs/
+**/linux/x64/
+**/linux/Debug/
+**/linux/Release/
+
+# =========================
+# Symbolication & Obfuscation
+# =========================
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-# Windows explorer cache files
-Thumbs.db

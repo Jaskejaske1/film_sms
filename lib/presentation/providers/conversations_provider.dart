@@ -14,6 +14,7 @@ import '../../data/models/conversation.dart';
 import '../../core/templates/message_template.dart';
 import '../../data/models/message.dart';
 import 'contacts_provider.dart';
+import '../../core/utils/belgian_phone_generator.dart';
 
 // Initialize contacts and default templates (De Lijn)
 final appInitProvider = FutureProvider<void>((ref) async {
@@ -25,7 +26,7 @@ final appInitProvider = FutureProvider<void>((ref) async {
   Contact? deLijn = contacts.firstWhere(
     (c) => c.phoneNumber == BelgianConstants.deLijnNumber,
     orElse: () => Contact(
-      name: 'De Lijn',
+      name: '',
       phoneNumber: BelgianConstants.deLijnNumber,
       type: ContactType.transport,
       isDynamic: true,
@@ -61,10 +62,19 @@ final reseedDataActionProvider = Provider<Future<void> Function()>((ref) {
     await storage.hardReset();
     // Seed contacts first
     final contacts = BelgianContactsData.getAllContacts();
-    await storage.saveContacts(contacts);
+    // Deterministically assign numbers to blank entries (keep De Lijn fixed)
+    final generated = contacts.map((c) {
+      final raw = c.phoneNumber.trim();
+      if (raw.isEmpty) {
+        final gen = BelgianPhoneGenerator.generateForSeed(c.name);
+        return c.copyWith(phoneNumber: gen);
+      }
+      return c;
+    }).toList();
+    await storage.saveContacts(generated);
     // Seed conversations using saved contacts for correct ids
     final seededConversations = BelgianConversationsData.getAllConversations(
-      contacts,
+      generated,
     );
     await storage.saveConversations(seededConversations);
     // Ensure De Lijn template exists for De Lijn contact

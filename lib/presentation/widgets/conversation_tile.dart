@@ -4,6 +4,7 @@ import '../../core/utils/belgian_formatter.dart';
 class ConversationTile extends StatelessWidget {
   final String title;
   final String subtitle;
+  final String? phoneNumber;
   final int unreadCount;
   final DateTime? time;
   final VoidCallback? onTap;
@@ -13,6 +14,7 @@ class ConversationTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
+    this.phoneNumber,
     this.unreadCount = 0,
     this.time,
     this.onTap,
@@ -29,7 +31,20 @@ class ConversationTile extends StatelessWidget {
         child: Text(_initials(title)),
       ),
       title: Text(title),
-      subtitle: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
+      subtitle: (phoneNumber != null && phoneNumber!.trim().isNotEmpty)
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  BelgianFormatter.formatBelgianPhone(phoneNumber!.trim()),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 2),
+                Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
+              ],
+            )
+          : Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,

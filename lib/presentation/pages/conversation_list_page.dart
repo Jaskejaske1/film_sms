@@ -148,11 +148,27 @@ class ConversationListPage extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final c = items[index];
                   final contact = ref.watch(contactByIdProvider(c.contactId));
+                  final name = (contact?.name ?? '').trim();
+                  final phone = contact?.phoneNumber;
+                  final phoneTrimmed = phone?.trim();
+                  final titleText = name.isNotEmpty
+                      ? name
+                      : (phoneTrimmed != null && phoneTrimmed.isNotEmpty
+                            ? BelgianFormatter.formatBelgianPhone(phoneTrimmed)
+                            : (AppLocalizations.of(context)?.unknownContact ??
+                                  'Onbekend'));
                   return ConversationTile(
-                    title:
-                        contact?.name ??
-                        (AppLocalizations.of(context)?.unknownContact ??
-                            'Onbekend'),
+                    title: titleText,
+                    phoneNumber: (() {
+                      if (phoneTrimmed == null || phoneTrimmed.isEmpty) {
+                        return null;
+                      }
+                      final formatted = BelgianFormatter.formatBelgianPhone(
+                        phoneTrimmed,
+                      );
+                      // Avoid duplication: if title already matches formatted phone, skip subtitle
+                      return titleText == formatted ? null : phoneTrimmed;
+                    })(),
                     subtitle: c.lastMessageText,
                     unreadCount: c.unreadCount,
                     time: c.lastMessageTime,

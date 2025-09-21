@@ -2,19 +2,57 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Flutter run (Windows desktop)",
+			"label": "Flutter: Analyze",
+			"type": "shell",
+			"command": "flutter",
+			"args": [
+				"analyze"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Flutter: Test",
+			"type": "shell",
+			"command": "flutter",
+			"args": [
+				"test"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Flutter: Run Windows",
 			"type": "shell",
 			"command": "flutter",
 			"args": [
 				"run",
 				"-d",
+				"windows"
+			]
+		},
+		{
+			"label": "Flutter: Build Windows (release)",
+			"type": "shell",
+			"command": "flutter",
+			"args": [
+				"build",
 				"windows",
-				"--quiet"
+				"--release"
 			],
-			"isBackground": false,
+			"group": "build",
 			"problemMatcher": [
-				"$flutter-test"
+				"$gcc"
+			]
+		},
+		{
+			"label": "Flutter: Run Windows",
+			"type": "shell",
+			"command": "flutter",
+			"args": [
+				"run",
+				"-d",
+				"windows"
 			],
+			"isBackground": true,
 			"group": "build"
 		}
 	]
