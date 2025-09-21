@@ -112,14 +112,12 @@ class ConversationRepository {
   // Get conversations sorted by last message time
   Future<List<Conversation>> getConversationsSorted() async {
     final conversations = await getAllConversations();
-    conversations.sort(
-      (a, b) {
-        final cmp = b.lastMessageTime.compareTo(a.lastMessageTime);
-        if (cmp != 0) return cmp;
-        // Tiebreaker: stable by id to prevent visual swaps when equal
-        return a.id.compareTo(b.id);
-      },
-    );
+    conversations.sort((a, b) {
+      final cmp = b.lastMessageTime.compareTo(a.lastMessageTime);
+      if (cmp != 0) return cmp;
+      // Tiebreaker: stable by id to prevent visual swaps when equal
+      return a.id.compareTo(b.id);
+    });
     return conversations;
   }
 }
