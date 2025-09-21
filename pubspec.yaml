@@ -2,7 +2,7 @@ name: film_sms
 description: Professional fake SMS app for film production
 publish_to: "none"
 
-version: 1.1.0+1
+version: 1.1.0+2
 
 environment:
   # Dart constraint matches Flutter 3.35.4 (bundled Dart 3.9.x)
